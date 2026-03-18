@@ -68,9 +68,38 @@ o	Use the color-coded jumper wires (e.g., red for VCC, black for GND, green for 
 13.	Stop Simulation: Click the “Stop Simulation” button to end the test.
     
 14.	Save Circuit: Click “Save” to store your design and code for future use or presentation.
-## PROGRAM
+## CIRCUIT DIAGRAM 
+<img width="753" height="385" alt="image" src="https://github.com/user-attachments/assets/f5927692-d50d-48a9-8106-0f8e042b513a" />
 
+## PROGRAM
+```
+#define echoPin 2
+#define trigPin 3
+long duration;
+int distance;
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+}
+```
 ## OUTPUT
+<img width="712" height="345" alt="image" src="https://github.com/user-attachments/assets/8fdf8901-3440-4ccb-9236-baee23d7b742" />
+
 ## Result:
 The simulation successfully measured the distance between the ultrasonic sensor  HC-SR04 and the object. The real-time distance values were accurately displayed on the serial monitor in centimeters.
 
